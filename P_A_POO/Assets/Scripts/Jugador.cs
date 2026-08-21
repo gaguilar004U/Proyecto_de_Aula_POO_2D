@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Jugador : Personaje
@@ -7,6 +8,7 @@ public class Jugador : Personaje
     private int nivel = 1;
     private bool tocoCura = false;
     private Rigidbody2D rb;
+    private int vidaJugador;
 
     // Movimiento
     public float moveSpeed = 5f;
@@ -20,11 +22,17 @@ public class Jugador : Personaje
 
     void Start()
     {
+        Debug.Log("Start ejecutado");
         rb = GetComponent<Rigidbody2D>();
+        vidaJugador = Vida;
     }
 
     void Update()
     {
+        Debug.Log("Update ejecutado");
+        //Debug
+        Debug.Log(vidaJugador);
+        //
         //direccion con teclas
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
@@ -32,6 +40,7 @@ public class Jugador : Personaje
         if (Input.GetKeyDown(KeyCode.Space) &&isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            /*energia -= 25; agregar que por salto se agote la energia y no pueda saltar hasta que vuelva a llegar a 100*/
         }
     }
 
@@ -42,5 +51,17 @@ public class Jugador : Personaje
             groundCheckRadius,
             groundLayer
         );
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Dano")
+        {
+            vidaJugador -= 25;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            if (vidaJugador <= 0)
+            {
+                Morir();
+            }
+        }
     }
 }

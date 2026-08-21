@@ -8,7 +8,7 @@ public class Personaje : MonoBehaviour
     private int velocidad = 5;
     // Variables de solo lectura
     public string Nombre => nombre;
-    public int Vida  => vida;
+    public int Vida => vida;
     public int Velocidad => velocidad;
     
     public void Mover(float direccionX)
@@ -33,6 +33,7 @@ public class Personaje : MonoBehaviour
     public void Morir()
     {
         Debug.Log(nombre + "murió");
-        Destroy(gameObject);
+        //Destroy(GameObject.FindGameObjectWithTag("Player"));
+        UnityEngine. SceneManagement. SceneManager.LoadScene("EjemploGF");
     }
 }
