@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using UnityEngine;
 
 public class Jugador : Personaje
@@ -30,9 +30,7 @@ public class Jugador : Personaje
     void Update()
     {
         Debug.Log("Update ejecutado");
-        //Debug
-        Debug.Log(vidaJugador);
-        //
+        
         //direccion con teclas
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
@@ -58,6 +56,8 @@ public class Jugador : Personaje
         {
             vidaJugador -= 25;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            //Debug
+            Debug.Log("Vida: " + vidaJugador);
             if (vidaJugador <= 0)
             {
                 Morir();
