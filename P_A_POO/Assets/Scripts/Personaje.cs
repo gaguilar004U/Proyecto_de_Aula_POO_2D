@@ -3,7 +3,6 @@ using UnityEngine;
 public class Personaje : MonoBehaviour
 {
     //base
-    protected Rigidbody2D rb;
     private string nombre;
     private int vida = 100;
     private int velocidad = 5;
