@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemigo : MonoBehaviour
+public class Enemigo : Personaje
 {
     private string tipo;
     
@@ -15,6 +15,11 @@ public class Enemigo : MonoBehaviour
     }
 
     void Update()
+    {
+        Mover();
+    }
+
+    public override void Mover()
     {
         if (Vector2.Distance(transform.position, points[i].position) < 0.25f)
         {

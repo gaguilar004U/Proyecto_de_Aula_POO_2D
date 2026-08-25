@@ -32,16 +32,23 @@ public class Jugador : Personaje
         Debug.Log("Update ejecutado");
         
         //direccion con teclas
-        float moveInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        Mover();
 
         if (Input.GetKeyDown(KeyCode.Space) &&isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            /*energia -= 25; agregar que por salto se agote la energia y no pueda saltar hasta que vuelva a llegar a 100*/
+            Saltar();
         }
     }
-
+    public override void Mover()
+    {
+        float moveInput = Input.GetAxis("Horizontal");
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+    }
+    public override void Saltar()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            /*energia -= 25; agregar que por salto se agote la energia y no pueda saltar hasta que vuelva a llegar a 100*/
+    }
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(

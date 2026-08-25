@@ -11,12 +11,12 @@ public class Personaje : MonoBehaviour
     public int Vida => vida;
     public int Velocidad => velocidad;
     
-    public void Mover(float direccionX)
+    public virtual void Mover()
     {
         
-        transform.Translate(Vector2.right * direccionX * velocidad * Time.deltaTime);
+        //transform.Translate(Vector2.right * direccionX * velocidad * Time.deltaTime);
     }
-    public void Saltar()
+    public virtual void Saltar()
     {
         GetComponent<Rigidbody2D>().AddForce(Vector2.up, ForceMode2D.Impulse);
     }
