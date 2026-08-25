@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Personaje : MonoBehaviour
 {
@@ -30,10 +31,15 @@ public class Personaje : MonoBehaviour
         }
     }
 
-    public void Morir()
+    public virtual void Morir()
     {
         Debug.Log(nombre + "murió");
         //Destroy(GameObject.FindGameObjectWithTag("Player"));
-        UnityEngine. SceneManagement. SceneManager.LoadScene("EjemploGF");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public virtual void Atacar()
+    {
+        Debug.Log(nombre + " atacó.");
     }
 }
