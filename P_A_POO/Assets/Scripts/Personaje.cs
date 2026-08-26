@@ -22,9 +22,10 @@ public class Personaje : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(Vector2.up, ForceMode2D.Impulse);
     }
 
-    public void RecibirDanio(int cantidad)
+    public virtual void RecibirDanio(int cantidad)
     {
         vida -= cantidad;
+
         if (vida <= 0)
         {
             Morir();

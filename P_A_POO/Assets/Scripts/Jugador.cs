@@ -76,4 +76,17 @@ public class Jugador : Personaje
             }
         }
     }
+
+
+    public override void RecibirDanio(int cantidad)
+    {
+        vidaJugador -= cantidad;
+
+        Debug.Log("Vida del jugador: " + vidaJugador);
+
+        if (vidaJugador <= 0)
+        {
+            Morir();
+        }
+    }
 }
