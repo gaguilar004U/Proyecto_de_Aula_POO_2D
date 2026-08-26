@@ -107,5 +107,14 @@ public class Jugador : Personaje
             RecibirDanio(25);
         }
     }
+    public void atacar()
+    {
+        //Pendiente de integrar
+    }
+    
+    public void recogerObjeto()
+    {
+        //Pendiente de integrar
+    }
 
 }
