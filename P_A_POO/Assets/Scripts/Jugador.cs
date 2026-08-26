@@ -129,5 +129,22 @@ public class Jugador : Personaje
     {
         //Pendiente de integrar
     }
+        public void AgregarMonedas(int cantidad)
+    {
+        monedas += cantidad;
+        Debug.Log("Monedas: " + monedas);
+    }
+
+    public void RecibirCura(int cantidad)
+    {
+        vidaJugador += cantidad;
+
+        if (vidaJugador > Vida)
+        {
+            vidaJugador = Vida;
+        }
+
+        Debug.Log("Vida: " + vidaJugador);
+    }
 
 }
