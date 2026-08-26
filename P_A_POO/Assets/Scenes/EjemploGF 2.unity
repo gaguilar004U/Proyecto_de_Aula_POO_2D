@@ -9205,6 +9205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoAtacante
       objectReference: {fileID: 0}
+    - target: {fileID: 7541668657225563287, guid: 16c8a34c669604b499b9f229ed702d13, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

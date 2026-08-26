@@ -28,6 +28,8 @@ public class EnemigoAtacante : EnemigoBase
 
     private void Update()
     {
+        MirarAlJugador();
+
         if (jugador == null)
             return;
 
@@ -83,5 +85,29 @@ public class EnemigoAtacante : EnemigoBase
         }
 
         return null;
+    }
+
+    private void MirarAlJugador()
+    {
+        if (jugador == null) return;
+
+        if (jugador.position.x < transform.position.x)
+        {
+            // Jugador está a la izquierda
+            transform.localScale = new Vector3(
+                Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        }
+        else
+        {
+            // Jugador está a la derecha
+            transform.localScale = new Vector3(
+                -Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        }
     }
 }
