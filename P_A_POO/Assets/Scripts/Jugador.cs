@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Jugador : Personaje
 {
+    public float limiteCaida = -10f;
     // Atributos propios del jugador
     private int energia = 100;
     private int nivel = 1;
@@ -38,6 +39,11 @@ public class Jugador : Personaje
         {
             Saltar();
         }
+
+        if (transform.position.y < limiteCaida)
+        {
+            RecibirDanio(vidaJugador);
+        }
     }
     public override void Mover()
     {
@@ -57,6 +63,11 @@ public class Jugador : Personaje
             groundLayer
         );
     }
+    
+    /*public override void RecibirDanio()
+    {
+        
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Dano")
@@ -70,5 +81,31 @@ public class Jugador : Personaje
                 Morir();
             }
         }
+    }*/
+
+
+
+    public override void RecibirDanio(int cantidad)
+    {
+        // Comportamiento adicional
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+        // Ejecuta la lógica propia
+        vidaJugador -= 25;
+        if (vidaJugador <= 0)
+        {
+            Morir();
+        }
+
+        Debug.Log("Vida: " + vidaJugador);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Dano"))
+        {
+            RecibirDanio(25);
+        }
+    }
+
 }
