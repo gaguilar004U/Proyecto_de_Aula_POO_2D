@@ -9,7 +9,9 @@ public class Jugador : Personaje
     private bool tocoCura = false;
     private Rigidbody2D rb;
     private int vidaJugador;
+    private int monedas = 0;
 
+    
     // Ataque
     //private int ataque = 20;
 
@@ -17,7 +19,7 @@ public class Jugador : Personaje
     public int VidaJugador => vidaJugador;
     public int Energia => energia;
     public int Nivel => nivel;
-   
+    public int Monedas => monedas;
 
     // Movimiento
     public float moveSpeed = 5f;
@@ -88,5 +90,23 @@ public class Jugador : Personaje
         {
             Morir();
         }
+    }
+
+    public void AgregarMonedas(int cantidad)
+    {
+        monedas += cantidad;
+        Debug.Log("Monedas: " + monedas);
+    }
+
+    public void RecibirCura(int cantidad)
+    {
+        vidaJugador += cantidad;
+
+        if (vidaJugador > Vida)
+        {
+            vidaJugador = Vida;
+        }
+
+        Debug.Log("Vida: " + vidaJugador);
     }
 }

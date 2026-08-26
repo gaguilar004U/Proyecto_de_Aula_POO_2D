@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Jugador jugador;
 
     private float tiempo;
-    private int monedas = 0;
     //private int kills = 0;
     //private int objetivos = 0;
     //private int totalObjetivos = 10;
@@ -48,16 +47,13 @@ public class UIManager : MonoBehaviour
 
         textoVida.text = "VIDA: " + jugador.VidaJugador;
         textoEnergia.text = "ENERGIA: " + jugador.Energia;
-        textoMonedas.text = "MONEDAS: " + monedas;
+        textoMonedas.text = "MONEDAS: " + jugador.Monedas;
         //textoKills.text = "KILLS: " + kills;
         //textoObjetivos.text = "OBJETIVOS: " + objetivos + "/" + totalObjetivos;
         textoNivel.text = "NIVEL: " + nivel;
     }
 
-    public void AgregarMoneda()
-    {
-        monedas++;
-    }
+  
 
     public void AgregarKill()
     {
