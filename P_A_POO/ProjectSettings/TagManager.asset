@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dano
   - Enemy
+  - Suelo
   layers:
   - Default
   - TransparentFX
