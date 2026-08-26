@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Dano
+  - Enemy
+  - Suelo
   layers:
   - Default
   - TransparentFX

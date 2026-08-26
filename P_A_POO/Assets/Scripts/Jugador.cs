@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class Jugador : Personaje
@@ -10,6 +10,17 @@ public class Jugador : Personaje
     private bool tocoCura = false;
     private Rigidbody2D rb;
     private int vidaJugador;
+    private int monedas = 0;
+
+    
+    // Ataque
+    //private int ataque = 20;
+
+    // Propiedades para que la UI pueda consultar los datos
+    public int VidaJugador => vidaJugador;
+    public int Energia => energia;
+    public int Nivel => nivel;
+    public int Monedas => monedas;
 
     // Movimiento
     public float moveSpeed = 5f;
@@ -31,7 +42,7 @@ public class Jugador : Personaje
     void Update()
     {
         Debug.Log("Update ejecutado");
-        
+
         //direccion con teclas
         Mover();
 
@@ -74,8 +85,10 @@ public class Jugador : Personaje
         {
             vidaJugador -= 25;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
             //Debug
             Debug.Log("Vida: " + vidaJugador);
+
             if (vidaJugador <= 0)
             {
                 Morir();

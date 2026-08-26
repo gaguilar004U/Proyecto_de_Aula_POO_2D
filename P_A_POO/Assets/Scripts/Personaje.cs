@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Personaje : MonoBehaviour
 {
@@ -24,16 +25,22 @@ public class Personaje : MonoBehaviour
     public virtual void RecibirDanio(int cantidad)
     {
         vida -= cantidad;
+
         if (vida <= 0)
         {
             Morir();
         }
     }
 
-    public void Morir()
+    public virtual void Morir()
     {
         Debug.Log(nombre + "murió");
         //Destroy(GameObject.FindGameObjectWithTag("Player"));
-        UnityEngine. SceneManagement. SceneManager.LoadScene("EjemploGF");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public virtual void Atacar()
+    {
+        Debug.Log(nombre + " atacó.");
     }
 }
