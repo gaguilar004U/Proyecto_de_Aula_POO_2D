@@ -2551,6 +2551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ganar
   canvasVictoria: {fileID: 697066013}
+  tiempoEspera: 5
 --- !u!50 &1205544368
 Rigidbody2D:
   serializedVersion: 5
@@ -3111,7 +3112,7 @@ GameObject:
   - component: {fileID: 1498590776}
   - component: {fileID: 1498590775}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ManejoEscena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

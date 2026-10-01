@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Jugador : Personaje
 {
-    public float limiteCaida = -10f;
+    public float limiteCaida = -50f;
     // Atributos propios del jugador
     private int energia = 100;
     private int nivel = 1;
