@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// SRP: Se encarga del patrullaje entre puntos y del daño por contacto.
 public class EnemigoPatrulla : EnemigoBase
 {
     [Header("Patrulla")]
@@ -13,17 +14,14 @@ public class EnemigoPatrulla : EnemigoBase
         base.Start();
     }
 
-    void Update()
+    private void Update()
     {
         Patrullar();
     }
 
     public void Patrullar()
     {
-        if (puntosPatrulla.Length == 0)
-        {
-            return;
-        }
+        if (puntosPatrulla == null || puntosPatrulla.Length == 0) return;
 
         transform.position = Vector2.MoveTowards(
             transform.position,
@@ -31,16 +29,9 @@ public class EnemigoPatrulla : EnemigoBase
             velocidadPatrulla * Time.deltaTime
         );
 
-        if (Vector2.Distance(
-            transform.position,
-            puntosPatrulla[puntoActual].position) < 0.1f)
+        if (Vector2.Distance(transform.position, puntosPatrulla[puntoActual].position) < 0.1f)
         {
-            puntoActual++;
-
-            if (puntoActual >= puntosPatrulla.Length)
-            {
-                puntoActual = 0;
-            }
+            puntoActual = (puntoActual + 1) % puntosPatrulla.Length;
         }
     }
 
@@ -48,11 +39,11 @@ public class EnemigoPatrulla : EnemigoBase
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Personaje personaje = collision.gameObject.GetComponent<Personaje>();
-
-            if (personaje != null)
+            // ISP / DIP: Desacoplado mediante interfaz IDaniable
+            IDaniable objetivo = collision.gameObject.GetComponent<IDaniable>();
+            if (objetivo != null)
             {
-                personaje.RecibirDanio(dano);
+                objetivo.RecibirDanio(dano);
                 Atacar();
             }
         }
