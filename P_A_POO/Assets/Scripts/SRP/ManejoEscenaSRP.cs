@@ -8,4 +8,14 @@ public class ManejoEscenaSRP : MonoBehaviour
         int indiceEscenaActual = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(indiceEscenaActual);
     }
+    public void SiguienteNivel()
+    {
+        Time.timeScale = 1f;
+        int siguienteIndice = SceneManager.GetActiveScene().buildIndex + 1;
+        if (siguienteIndice >= SceneManager.sceneCountInBuildSettings)
+        {
+            siguienteIndice = 0;
+        }
+        SceneManager.LoadScene(siguienteIndice);
+    }
 }
