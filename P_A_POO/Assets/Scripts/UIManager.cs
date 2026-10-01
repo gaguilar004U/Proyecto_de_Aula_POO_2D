@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement; // Necesario para detectar la escena actual
 
 public class UIManager : MonoBehaviour
 {
@@ -20,7 +21,12 @@ public class UIManager : MonoBehaviour
     //private int kills = 0;
     //private int objetivos = 0;
     //private int totalObjetivos = 10;
-    private int nivel = 1;
+    private int nivel;
+
+    private void Start()
+    {
+        nivel = SceneManager.GetActiveScene().buildIndex;
+    }
 
     private void Update()
     {
@@ -52,8 +58,6 @@ public class UIManager : MonoBehaviour
         //textoObjetivos.text = "OBJETIVOS: " + objetivos + "/" + totalObjetivos;
         textoNivel.text = "NIVEL: " + nivel;
     }
-
-  
 
     public void AgregarKill()
     {
