@@ -1,33 +1,41 @@
 using UnityEngine;
 
-public class EnemigoBase : Personaje
+// ABSTRACCIÓN Y HERENCIA
+public abstract class EnemigoBase : Personaje
 {
-    [Header("Datos del enemigo")]
+    [Header("Datos del Enemigo")]
     [SerializeField] protected int dano = 20;
-    [SerializeField] protected float rangoDeteccion = 5f;
+    [SerializeField] protected float rangoDeteccion = 7f;
 
     protected Transform jugador;
 
+    // ENCAPSULAMIENTO
+    public int Dano => dano;
+    public float RangoDeteccion => rangoDeteccion;
+
     protected virtual void Start()
     {
-        GameObject objetoJugador = GameObject.FindGameObjectWithTag("Player");
+        BuscarJugador();
+    }
 
+    protected void BuscarJugador()
+    {
+        GameObject objetoJugador = GameObject.FindGameObjectWithTag("Player");
         if (objetoJugador != null)
         {
             jugador = objetoJugador.transform;
         }
     }
 
-    public int Dano => dano;
-
+    // POLIMORFISMO
     public override void Morir()
     {
-        Debug.Log("El enemigo murió.");
+        Debug.Log($"El enemigo {gameObject.name} murió.");
         Destroy(gameObject);
     }
 
     public override void Atacar()
     {
-        Debug.Log("El enemigo atacó.");
+        Debug.Log($"El enemigo {gameObject.name} atacó.");
     }
 }
