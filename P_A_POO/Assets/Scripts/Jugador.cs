@@ -4,27 +4,27 @@ using UnityEngine;
 public class Jugador : Personaje
 {
     public float limiteCaida = -10f;
-    // Atributos propios del jugador
-    private int energia = 100;
-    private int nivel = 1;
-    private bool tocoCura = false;
     private Rigidbody2D rb;
     private int vidaJugador;
 
-    // Movimiento
     public float moveSpeed = 5f;
 
-    // Salto
     public float jumpForce = 10f;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
     private bool isGrounded;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogError("Falta el componente Rigidbody2D en " + gameObject.name);
+        }
+    }
     void Start()
     {
-        Debug.Log("Start ejecutado");
-        rb = GetComponent<Rigidbody2D>();
         vidaJugador = Vida;
     }
 
@@ -63,34 +63,11 @@ public class Jugador : Personaje
             groundLayer
         );
     }
-    
-    /*public override void RecibirDanio()
-    {
-        
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Dano")
-        {
-            vidaJugador -= 25;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            //Debug
-            Debug.Log("Vida: " + vidaJugador);
-            if (vidaJugador <= 0)
-            {
-                Morir();
-            }
-        }
-    }*/
-
-
 
     public override void RecibirDanio(int cantidad)
     {
-        // Comportamiento adicional
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
-        // Ejecuta la lógica propia
         vidaJugador -= 25;
         if (vidaJugador <= 0)
         {
@@ -107,14 +84,4 @@ public class Jugador : Personaje
             RecibirDanio(25);
         }
     }
-    public void atacar()
-    {
-        //Pendiente de integrar
-    }
-    
-    public void recogerObjeto()
-    {
-        //Pendiente de integrar
-    }
-
 }

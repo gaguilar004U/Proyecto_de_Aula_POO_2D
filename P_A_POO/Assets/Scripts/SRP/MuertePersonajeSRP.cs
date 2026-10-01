@@ -8,8 +8,13 @@ public class MuertePersonajeSRP : MonoBehaviour
     private void Awake()
     {
         personaje = GetComponent<PersonajeSRP>();
-
         manejoEscenaSRP = FindFirstObjectByType<ManejoEscenaSRP>();
+
+        // Advertencia si no se encuentra en la escena
+        if (manejoEscenaSRP == null)
+        {
+            Debug.LogError("Falta el componente ManejoEscenaSRP en la escena. Asegúrate de asignarlo a un GameObject.");
+        }
     }
 
     public void Morir()
@@ -22,6 +27,10 @@ public class MuertePersonajeSRP : MonoBehaviour
         if (manejoEscenaSRP != null)
         {
             manejoEscenaSRP.ReiniciarNivel();
+        }
+        else
+        {
+            Debug.LogError("No se pudo reiniciar el nivel: ManejoEscenaSRP no existe en la escena.");
         }
     }
 }

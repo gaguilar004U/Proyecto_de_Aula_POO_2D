@@ -5,6 +5,7 @@ public class ManejoEscenaSRP : MonoBehaviour
 {
     public void ReiniciarNivel()
     {
-        SceneManager.LoadScene("EjemploGF");
+        int indiceEscenaActual = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(indiceEscenaActual);
     }
 }
