@@ -1,8 +1,9 @@
 using UnityEngine;
 
+// SRP: Administra la persecución terrestre, la superación de obstáculos (salto) y el ataque al jugador.
 public class EnemigoPerseguidor : EnemigoBase
 {
-    [Header("Persecuci�n")]
+    [Header("Persecución")]
     [SerializeField] private float velocidadPersecucion = 1f;
 
     [Header("Salto")]
@@ -12,7 +13,7 @@ public class EnemigoPerseguidor : EnemigoBase
     [SerializeField] private float distanciaDetector = 1f;
     [SerializeField] private LayerMask capaSuelo;
 
-    [Header("Ataque y Da�o")]
+    [Header("Ataque y Daño")]
     [SerializeField] private float tiempoEntreAtaques = 1f;
     private float tiempoSiguienteAtaque = 0f;
 
@@ -29,7 +30,7 @@ public class EnemigoPerseguidor : EnemigoBase
     {
         if (jugador == null) return;
 
-        float distancia = Vector2.Distance((Vector2)transform.position, (Vector2)jugador.position);
+        float distancia = Vector2.Distance(transform.position, jugador.position);
         puedePerseguir = distancia <= rangoDeteccion;
 
         if (puedePerseguir)
@@ -40,7 +41,7 @@ public class EnemigoPerseguidor : EnemigoBase
 
     private void Perseguir()
     {
-        Vector2 direccion = (Vector2)(jugador.position - transform.position);
+        Vector2 direccion = jugador.position - transform.position;
 
         if (Mathf.Abs(direccion.x) > 0.1f)
         {
@@ -60,9 +61,9 @@ public class EnemigoPerseguidor : EnemigoBase
         if (detectorSuelo == null) return;
 
         bool estaEnSuelo = Physics2D.OverlapCircle(
-            (Vector2)detectorSuelo.position,
+            detectorSuelo.position,
             0.2f,
-            capaSuelo.value
+            capaSuelo
         );
 
         if (!estaEnSuelo)
@@ -74,10 +75,10 @@ public class EnemigoPerseguidor : EnemigoBase
         estaSaltando = false;
 
         RaycastHit2D obstaculo = Physics2D.Raycast(
-            (Vector2)detectorSuelo.position,
+            detectorSuelo.position,
             Vector2.right * direccion,
             distanciaDetector,
-            capaSuelo.value
+            capaSuelo
         );
 
         if (obstaculo.collider != null && !estaSaltando)
@@ -107,6 +108,7 @@ public class EnemigoPerseguidor : EnemigoBase
         {
             if (Time.time >= tiempoSiguienteAtaque)
             {
+                // ISP / DIP: Desacoplado mediante la interfaz IDaniable
                 IDaniable objetivo = objetoColisionado.GetComponent<IDaniable>();
 
                 if (objetivo != null)
