@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// HERENCIA
+// ABSTRACCIÓN Y HERENCIA
 public abstract class EnemigoBase : Personaje
 {
     [Header("Datos del Enemigo")]
@@ -9,6 +9,7 @@ public abstract class EnemigoBase : Personaje
 
     protected Transform jugador;
 
+    // ENCAPSULAMIENTO
     public int Dano => dano;
     public float RangoDeteccion => rangoDeteccion;
 
